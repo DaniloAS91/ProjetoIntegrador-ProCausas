@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="row mt-4 mb-4">
+
+    <div class="col-md-4 mr-4 bg-col rounded">
+      <p>perfil Lateral</p>
+      <app-perfil></app-perfil>
+    </div>
+
+    <div class="col-md-7 rounded">
+
+      <div class="row mb-2">
+
+        <div class="col-sm-12 bg-col rounded">
+          <h3 class="text-center text-Orange mb-4 mt-2"> Minhas Postagens </h3>
+        </div>
+
+        <div class="col-md-10 mr-0 mb-2 bg-col p-3 rounded">
+          <input class="form-control" type="search" placeholder="Pesquisar postagem" aria-label="Pesquisar" [(ngModel)]='titulo'>
+        </div>
+
+        <div class="col-md-2 pl-0 pt-3 mb-2  bg-col rounded ">
+          <button class="btn btn-outline-warning d-flex justify-content-center" type="button" (click)='findByTituloPostagem()' >Pesquisar</button>
+        </div>
+
+        <div class="col-md-12 mb-2 mt-2 p-3 bg-col d-flex justify-content-center rounded">
+          <!-- Modal Novo Tema -->
+          <button type="button" class="btn btn-outline-warning mr-3" data-toggle="modal" data-target="#modalTema">
+            Novo Tema
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modalTema" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content rounded">
+                <div class="modal-header">
+                  <h5 class="modal-title text-Orange" id="exampleModalLongTitle">Novo Tema</h5>
+                  <button type="btn btn-danger" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label class="text-white" for="texto">Nome do tema:</label>
+                    <input class="form-control" id="texto" rows="3" placeholder="Digite aqui o seu novo tema" [(ngModel)]='tema.temaDescricao'>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-warning" (click)='cadastrar()'>Cadastrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fim Modal Novo Tema-->
+
+          <!--Modal Nova Postagem-->
+          <button type="button" class="btn btn-outline-warning ml-3" data-toggle="modal" data-target="#modalPostagem">
+            Nova Postagem
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade rounded" id="modalPostagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content rounded">
+                <div class="modal-header">
+                  <h5 class="modal-title text-Orange" id="exampleModalLongTitle">Nova Postagem</h5>
+                  <button type="btn btn-outline-danger" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <div class="form-group">
+                    <label class="text-white" for="texto">Tema da Postagem:</label>
+                    <select name="tema" id='tema' class="form-control" placeholder="Selecione ser Tema" [(ngModel)]='idTema' (change)='findByIdTema()'>
+                      <option *ngFor='let item of listaTemas' value={{item.id}}>
+                        {{item.temaDescricao}}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="text-white" for="tituloPostagem">Titulo da Postagem:</label>
+                    <input class="form-control" id="tituloPostagem" placeholder="Digite aqui seu titulo"
+                    [(ngModel)]='postagem.postTitulo'>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="text-white" for="textoPostagem">Texto da Postagem:</label>
+                    <textarea class="form-control" id="textoPostagem" rows="3" placeholder="Digite aqui o seu texto" [(ngModel)]='postagem.postTexto'></textarea>
+                  </div>
+                  <label class="text-white" for="cepPostagem">CEP da causa:</label>
+                  <div class="form-group d-flex justify-content-center">
+
+                    <input class="form-control" style="width: 75%;" id="cepPostagem" placeholder="Digite aqui o seu CEP" [(ngModel)]='cepCausa'>
+                    <button class="btn btn-outline-warning ml-2" (click)="consultaCep()">Buscar CEP</button>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="text-white" for="enderecoPost">Endereço da Causa:</label>
+                    <input class="form-control" id="enderecoPost" value={{postagem.postEndereco}} placeholder="Digite aqui o Endereço da Causa"
+                    [(ngModel)]='postagem.postEndereco'>
+                  </div>
+                  <div class="form-group">
+                    <label class="text-white" for="estadoPost">Estado da Causa:</label>
+                    <input class="form-control" id="estadoPost" value={{postagem.postEstado}} placeholder="Digite aqui o Estado da Causa"
+                    [(ngModel)]='postagem.postEstado'>
+                  </div>
+                  <div class="form-group">
+                    <label class="text-white" for="cidadePost">Cidade da Causa:</label>
+                    <input class="form-control" id="cidadePost" value={{postagem.postCidade}} placeholder="Digite aqui a Cidade da Causa"
+                    [(ngModel)]='postagem.postCidade'>
+                  </div>
+                  <div class="form-group">
+                    <label class="text-white" for="bairroPost">Bairro da Causa:</label>
+                    <input class="form-control" id="bairroPost" value={{postagem.postBairro}} placeholder="Digite aqui o Bairro da Causa"
+                    [(ngModel)]='postagem.postBairro'>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Descartar</button>
+                  <button type="button" class="btn btn-warning" (click)="publicar()">Postar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fim Modal Nova Postagem-->
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 bg-col rounded">
+
+
+              <div class="row d-flex align-items-center">
+                <div class="col-lg-12">
+                  <div class="card mt-5 mb-5 bg-col" *ngFor='let item of listaPostagens | orderBy : key : reverse'>
+
+                      <!--Cards e Timeline-->
+                      <ul class="timeline bg-col">
+                        <hr class="mt-2">
+                        <li class="timeline-event">
+                          <label class="timeline-event-icon"></label>
+                          <div class="timeline-event-copy">
+
+                            <p class="timeline-event-thumbnail">{{item.data | date: 'dd/MM/yyyy'}} - {{item.data | date:'HH:mm'}}</p>
+                            <h3 class="text-Orange">{{item.postTitulo}}</h3>
+                            <h4 class="text-Orange">{{item.tema.temaDescricao}}</h4>
+                            <p class="text-white">{{item.postTexto}}</p>
+                            <hr class="mt-3">
+
+                            <button class="mr-3 btn btn-outline-info" [routerLink]="['/editar-post', item.id]">Editar</button>
+                            <button class="btn btn-outline-danger ml-3" [routerLink]="['/delete-post', item.id]">Apagar</button>
+                          </div>
+                        </li>
+                      </ul>
+
+                  </div>
+                </div>
+              </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

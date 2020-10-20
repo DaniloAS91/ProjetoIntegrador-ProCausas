@@ -1,0 +1,36 @@
+.bg-laranja{
+    background-color: rgb(235, 156, 10);
+}
+
+.altura{
+    height: 20px;
+}
+
+.faFacebook, .faLinkedin, .faInstagram {
+    color:rgba(0, 0, 0, 0.856);
+}
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+  
+    padding: 0;
+  }
+  
+  ul.social-network li {
+    display: inline;
+    margin: 0;
+    padding: 5px;
+  }
+
+  .faFacebook:hover{
+    color: #3b5998;
+  }
+  
+  .faLinkedin:hover{
+  color: #0072b1;
+  }
+  
+  .faInstagram:hover{
+  color: #C13584;
+  }

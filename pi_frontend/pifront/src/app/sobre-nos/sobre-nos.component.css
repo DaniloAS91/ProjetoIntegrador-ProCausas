@@ -1,0 +1,12 @@
+
+.parallax {
+    background-image: url("https://1.bp.blogspot.com/-hCCWZ6lVAQ8/WYotCogWYHI/AAAAAAAB3EY/NbbEiGEqXvMyFubglQ3pq9B7RganQ-OvwCLcBGAs/s640/Colab.jpg");
+
+    min-height: 500px;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}

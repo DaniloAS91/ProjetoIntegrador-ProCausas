@@ -1,0 +1,13 @@
+.bg-laranja {
+    background-color: rgb(235, 156, 10)
+}
+
+.endereco {
+    border: solid whitesmoke;
+    min-height: 50px;
+    border-radius: 10%;
+    background: rgb(255, 255, 255) transparent;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+

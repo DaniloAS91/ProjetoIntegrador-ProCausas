@@ -1,0 +1,12 @@
+{
+    "gitflow4code.features": [
+        {
+            "name": "feature/contato",
+            "base": "develop"
+        },
+        {
+            "name": "feature/merge_forks",
+            "base": "develop"
+        }
+    ]
+}
